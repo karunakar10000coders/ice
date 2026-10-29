@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scoopville – Premium Ice Cream</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background: #fffbf5;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Header / Navbar ── */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #d946a8;
+    }
+    .logo span { color: #333; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #d946a8; }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 40%, #e1bee7 100%);
+      text-align: center;
+      padding: 100px 24px 120px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #fffbf5;
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      color: #4a1942;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      color: #6a3460;
+    }
+    .hero-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: #d946a8;
+      color: #fff;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.25s, transform 0.15s;
+    }
+    .hero-btn:hover {
+      background: #b5368a;
+      transform: translateY(-2px);
+    }
+
+    /* ── Cards Section ── */
+    .cards-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .cards-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #4a1942;
+    }
+    .cards-section > p {
+      text-align: center;
+      max-width: 550px;
+      margin: 0 auto 48px;
+      color: #888;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      padding: 20px 24px 24px;
+    }
+    .card-body h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+      color: #4a1942;
+    }
+    .card-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #d946a8;
+      margin-bottom: 8px;
+    }
+    .card-body p {
+      font-size: 0.95rem;
+      color: #888;
+      margin-bottom: 16px;
+    }
+    .card-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .tag-classic   { background: #fce4ec; color: #c2185b; }
+    .tag-fruity    { background: #fff3e0; color: #e65100; }
+    .tag-premium   { background: #ede7f6; color: #7b1fa2; }
+    .tag-nutty     { background: #efebe9; color: #795548; }
+    .tag-tropical  { background: #e0f7fa; color: #00838f; }
+    .tag-indulgent { background: #fce4ec; color: #ad1457; }
+
+    /* ── Specials Banner ── */
+    .specials {
+      background: linear-gradient(135deg, #7b1fa2, #d946a8);
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px;
+    }
+    .specials h2 {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .specials p {
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 28px;
+      opacity: 0.9;
+    }
+    .specials-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      border: 2px solid #fff;
+      border-radius: 30px;
+      font-weight: 600;
+      color: #fff;
+      transition: background 0.25s, color 0.25s;
+    }
+    .specials-btn:hover {
+      background: #fff;
+      color: #7b1fa2;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #2c1025;
+      color: #c9a0be;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    footer .footer-brand {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #d946a8;
+      margin-bottom: 8px;
+    }
+    footer p {
+      font-size: 0.9rem;
+    }
+    footer .footer-links {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+    }
+    footer .footer-links a {
+      color: #c9a0be;
+      transition: color 0.2s;
+    }
+    footer .footer-links a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav class="nav">
+      <div class="logo">🍦 Scoop<span>ville</span></div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#flavors">Flavors</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Happiness in Every Scoop</h1>
+    <p>Hand-crafted, small-batch ice cream made with the finest ingredients. Life's too short for boring desserts.</p>
+    <a href="#flavors" class="hero-btn">Explore Flavors ↓</a>
+  </section>
+
+  <!-- Cards -->
+  <section class="cards-section" id="flavors">
+    <h2>Our Signature Flavors</h2>
+    <p>From timeless classics to bold new creations — there's a scoop for every mood.</p>
+
+    <div class="cards-grid">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=600&q=80" alt="Vanilla ice cream cone" />
+        <div class="card-body">
+          <h3>Madagascar Vanilla</h3>
+          <div class="card-price">$4.50</div>
+          <p>Real vanilla bean flecks in a silky, rich cream base. The classic done right.</p>
+          <span class="card-tag tag-classic">Classic</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1563589173312-476d8c36b3c9?w=600&q=80" alt="Strawberry ice cream" />
+        <div class="card-body">
+          <h3>Strawberry Bliss</h3>
+          <div class="card-price">$5.00</div>
+          <p>Bursting with chunks of fresh summer strawberries and a hint of lemon zest.</p>
+          <span class="card-tag tag-fruity">Fruity</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?w=600&q=80" alt="Chocolate ice cream" />
+        <div class="card-body">
+          <h3>Dark Chocolate Truffle</h3>
+          <div class="card-price">$5.50</div>
+          <p>Intense Belgian dark chocolate swirled with fudge ribbons and cocoa nibs.</p>
+          <span class="card-tag tag-premium">Premium</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1629385701021-fcd568a743e8?w=600&q=80" alt="Pistachio ice cream" />
+        <div class="card-body">
+          <h3>Sicilian Pistachio</h3>
+          <div class="card-price">$6.00</div>
+          <p>Roasted Bronte pistachios blended into a nutty, emerald-green gelato.</p>
+          <span class="card-tag tag-nutty">Nutty</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&q=80" alt="Mango sorbet" />
+        <div class="card-body">
+          <h3>Mango Tango Sorbet</h3>
+          <div class="card-price">$5.00</div>
+          <p>A dairy-free tropical escape with Alphonso mangoes and a splash of lime.</p>
+          <span class="card-tag tag-tropical">Tropical</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?w=600&q=80" alt="Cookie dough ice cream" />
+        <div class="card-body">
+          <h3>Cookie Dough Crunch</h3>
+          <div class="card-price">$5.50</div>
+          <p>Chunks of brown-sugar cookie dough and chocolate chips in a sweet cream base.</p>
+          <span class="card-tag tag-indulgent">Indulgent</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Specials Banner -->
+  <section class="specials">
+    <h2>🍨 Weekend Special</h2>
+    <p>Buy 2 scoops, get a third free! Available every Saturday & Sunday at all locations.</p>
+    <a href="#" class="specials-btn">Find a Location</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">🍦 Scoopville</div>
+    <p>&copy; 2026 Scoopville Creamery. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Careers</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
